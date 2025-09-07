@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CGPA Booster - Your Academic Success Partner</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>"
+    />
+  </head>
+  <body>
+    <div class="bg-animation"></div>
+
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav">
+        <a href="#" class="logo">CGPA Booster</a>
+        <div class="nav-controls">
+          <div class="search-container">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search anything..."
+              class="search-input"
+            />
+            <button class="search-btn">🔍</button>
+          </div>
+          <button id="darkModeToggle" class="dark-toggle">🌙</button>
+          <button class="profile-btn">👤</button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Motivational Banner -->
+    <section class="motivation-banner">
+      <div class="container">
+        <div class="motivation-content">
+          <h2 id="motivationText">
+            Success is not final, failure is not fatal: it is the courage to
+            continue that counts! 💪
+          </h2>
+          <button id="newQuoteBtn" class="quote-btn">New Quote ✨</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Study Timer & Stats -->
+    <section class="dashboard">
+      <div class="container">
+        <div class="dashboard-grid">
+          <div class="timer-card card">
+            <h3>⏰ Exam Countdown</h3>
+            <div id="countdown" class="countdown-display">
+              <div class="time-unit">
+                <span id="days">0</span>
+                <label>Days</label>
+              </div>
+              <div class="time-unit">
+                <span id="hours">0</span>
+                <label>Hours</label>
+              </div>
+              <div class="time-unit">
+                <span id="minutes">0</span>
+                <label>Minutes</label>
+              </div>
+            </div>
+            <button id="setExamDate" class="btn-primary">Set Exam Date</button>
+          </div>
+
+          <div class="stats-card card">
+            <h3>📊 Your Progress</h3>
+            <div class="progress-stats">
+              <div class="stat-item">
+                <span class="stat-number" id="questionsStudied">0</span>
+                <span class="stat-label">Questions Studied</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number" id="bookmarkedCount">0</span>
+                <span class="stat-label">Bookmarked</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number" id="studyStreak">0</span>
+                <span class="stat-label">Day Streak</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="quick-actions card">
+            <h3>⚡ Quick Actions</h3>
+            <div class="action-buttons">
+              <button class="action-btn" onclick="openFlashcards()">
+                🎴 Flashcards
+              </button>
+              <button class="action-btn" onclick="openQuiz()">
+                🧪 Quiz Mode
+              </button>
+              <button class="action-btn" onclick="viewBookmarks()">
+                ⭐ Bookmarks
+              </button>
+              <button class="action-btn" onclick="uploadNotes()">
+                📝 Upload Notes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Semester Cards Section -->
+    <section class="semesters">
+      <div class="container">
+        <h2 class="section-title">📚 Choose Your Semester</h2>
+        <div class="semester-grid" id="semesterGrid">
+          <!-- Semester cards will be dynamically generated -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content Tabs -->
+    <section class="main-content">
+      <div class="container">
+        <div class="tabs-container">
+          <div class="tabs">
+            <button class="tab-btn active" data-tab="important-questions">
+              ❓ Important Questions
+            </button>
+            <button class="tab-btn" data-tab="one-night-study">
+              🌙 One Night Study
+            </button>
+            <button class="tab-btn" data-tab="notes">📝 Notes</button>
+            <button class="tab-btn" data-tab="quiz">🧪 Quiz</button>
+            <button class="tab-btn" data-tab="flashcards">🎴 Flashcards</button>
+          </div>
+
+          <div class="tab-content">
+            <!-- Important Questions Tab -->
+            <div id="important-questions" class="tab-pane active">
+              <div class="content-header">
+                <h3>🔥 Most Important Questions</h3>
+                <div class="filters">
+                  <select id="subjectFilter" class="filter-select">
+                    <option value="all">All Subjects</option>
+                    <option value="math">Mathematics</option>
+                    <option value="physics">Physics</option>
+                    <option value="chemistry">Chemistry</option>
+                    <option value="programming">Programming</option>
+                  </select>
+                  <select id="difficultyFilter" class="filter-select">
+                    <option value="all">All Difficulty</option>
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                  </select>
+                </div>
+              </div>
+              <div id="questionsContainer" class="questions-container">
+                <!-- Questions will be loaded here -->
+              </div>
+            </div>
+
+            <!-- One Night Study Tab -->
+            <div id="one-night-study" class="tab-pane">
+              <div class="content-header">
+                <h3>🌙 Crash Course Materials</h3>
+                <p>Quick revision materials for last-minute preparation</p>
+              </div>
+              <div class="study-materials">
+                <div class="material-card card">
+                  <h4>📐 Mathematics Formulas</h4>
+                  <p>All essential formulas in one place</p>
+                  <button class="btn-secondary">View Formulas</button>
+                </div>
+                <div class="material-card card">
+                  <h4>⚛️ Physics Concepts</h4>
+                  <p>Key concepts and derivations</p>
+                  <button class="btn-secondary">Study Now</button>
+                </div>
+                <div class="material-card card">
+                  <h4>🧪 Chemistry Reactions</h4>
+                  <p>Important reactions and mechanisms</p>
+                  <button class="btn-secondary">Quick Review</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Notes Tab -->
+            <div id="notes" class="tab-pane">
+              <div class="content-header">
+                <h3>📝 Your Notes</h3>
+                <button id="uploadNotesBtn" class="btn-primary">
+                  Upload New Notes
+                </button>
+              </div>
+              <div class="notes-grid" id="notesGrid">
+                <!-- Notes will be displayed here -->
+              </div>
+              <input
+                type="file"
+                id="fileInput"
+                accept=".pdf,.doc,.docx,.txt"
+                style="display: none"
+                multiple
+              />
+            </div>
+
+            <!-- Quiz Tab -->
+            <div id="quiz" class="tab-pane">
+              <div class="content-header">
+                <h3>🧪 Interactive Quiz</h3>
+                <p>Test your knowledge with interactive quizzes</p>
+              </div>
+              <div id="quizContainer" class="quiz-container">
+                <div class="quiz-start">
+                  <h4>Ready to test your knowledge?</h4>
+                  <button id="startQuizBtn" class="btn-primary">
+                    Start Quiz
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Flashcards Tab -->
+            <div id="flashcards" class="tab-pane">
+              <div class="content-header">
+                <h3>🎴 Interactive Flashcards</h3>
+                <p>Learn with flip cards for better retention</p>
+              </div>
+              <div id="flashcardsContainer" class="flashcards-container">
+                <!-- Flashcards will be generated here -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Study Break Reminder Modal -->
+    <div id="breakModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>⏰ Time for a Break!</h3>
+        <p>
+          You've been studying for a while. Take a 5-minute break to refresh
+          your mind!
+        </p>
+        <div class="modal-actions">
+          <button id="takeBreakBtn" class="btn-primary">Take Break</button>
+          <button id="continueStudyBtn" class="btn-secondary">
+            Continue Studying
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exam Date Modal -->
+    <div id="examDateModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>📅 Set Your Exam Date</h3>
+        <input type="datetime-local" id="examDateInput" class="date-input" />
+        <input
+          type="text"
+          id="examNameInput"
+          placeholder="Exam Name (e.g., Semester 1 Finals)"
+          class="text-input"
+        />
+        <div class="modal-actions">
+          <button id="saveExamDate" class="btn-primary">Save Date</button>
+          <button class="btn-secondary" onclick="closeModal('examDateModal')">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h4>CGPA Booster</h4>
+            <p>Your ultimate academic success partner</p>
+          </div>
+          <div class="footer-section">
+            <h4>Features</h4>
+            <ul>
+              <li>Important Questions</li>
+              <li>Study Materials</li>
+              <li>Interactive Quizzes</li>
+              <li>Progress Tracking</li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Study Tips</h4>
+            <ul>
+              <li>Take regular breaks</li>
+              <li>Practice active recall</li>
+              <li>Use spaced repetition</li>
+              <li>Stay consistent</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 CGPA Booster. Made with ❤️ for students</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
